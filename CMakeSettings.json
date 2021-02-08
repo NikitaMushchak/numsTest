@@ -1,0 +1,57 @@
+﻿{
+  "configurations": [
+    {
+      "name": "x64-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "-v",
+      "ctestCommandArgs": "",
+      "variables": [
+        {
+          "name": "GTEST_INCLUDE_DIR",
+          "value": "H:/googletest-release-1.10.0/googletest/include/",
+          "type": "STRING"
+        },
+        {
+          "name": "GTEST_LIBRARY",
+          "value": "H:/googletest-release-1.10.0/out/build/x64-Release/lib/gtest.lib",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "GTEST_LIBRARY_DEBUG",
+          "value": "H:/googletest-release-1.10.0/out/build/x64-Debug/lib/gtestd.lib",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "GTEST_MAIN_LIBRARY",
+          "value": "H:/googletest-release-1.10.0/out/build/x64-Release/lib/gtest_main.lib",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "GTEST_MAIN_LIBRARY_DEBUG",
+          "value": "H:/googletest-release-1.10.0/out/build/x64-Debug/lib/gtest_maind.lib",
+          "type": "FILEPATH"
+        }
+      ]
+    },
+    {
+      "name": "WSL-Debug",
+      "generator": "Unix Makefiles",
+      "configurationType": "Debug",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeExecutable": "/usr/bin/cmake",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "linux_x64" ],
+      "wslPath": "${defaultWSLPath}",
+      "addressSanitizerRuntimeFlags": "detect_leaks=0",
+      "variables": []
+    }
+  ]
+}
