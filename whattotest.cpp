@@ -5,6 +5,10 @@
 #include <iterator>
 #include <map>
 #include <bitset>
+#include <future>
+#include <thread>
+#include <queue>
+#include <atomic>
 
 #include <algorithm>
 
@@ -50,3 +54,24 @@ vint primesToArrayEratosfen(const int N) {
     }
     return primes;
 }
+
+bool ftask(int taskID) {
+    static std::mutex task;
+    task.lock();
+
+    std::cout << "thread id : " << std::this_thread::get_id() << " task : " << taskID << std::endl;
+
+    task.unlock();
+
+    size_t sleep = std::rand() % 1000;
+    std::this_thread::sleep_for(std::chrono::microseconds(sleep));
+    return true;
+}
+
+class Item {
+public:
+    void start() {
+        std::cout << "start():" << std::endl;
+        std::cout << "thread id : " << std::this_thread::get_id() << std::endl;
+    }
+};
