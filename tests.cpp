@@ -111,84 +111,75 @@ struct ListNode {
   
 
     int val;
-    int size = 0;
-    ListNode* head;
     ListNode* next;
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode* next) : val(x), next(next) {}
-    void Push_Back(int number) {
+    void Push_Back(ListNode *&plist,int number) {
         
-        if (head == nullptr) {
-            head = new ListNode(number);
+        if (plist == nullptr) {
+            plist = new ListNode(number);
             
         }
         else {
-            ListNode* current = this->head;
-            if (current->next != nullptr) {
-                current = current->next;
-            }
-            current->next = new ListNode(number);
+            
+            plist->next = new ListNode(number);
+            plist = plist->next;
         }
-        size++;
+        
+    }
+
+    void Print_List(ListNode list) {
+        int iterr = 0;
+        ListNode* current = list.next;
+        while (current) {
+            std::cout << "list member # " << iterr << " = " << current->val << std::endl;
+            current = current->next;
+            iterr++;
+        }
+
+    }
+
+    void Push_Back(ListNode**& tlist1, int number) {
+        (*tlist1) = new ListNode(number);
+        tlist1 = &((*tlist1)->next);
+    }
+
+    void Print_List(ListNode**& itlist) {
+        int iter = 0;
+        while ((*itlist))
+        {
+            std::cout << "list element #" << iter << " : " << (*itlist)->val << std::endl;
+            iter++;
+            *itlist = (*itlist)->next;
+        }
     }
 };
  
 
 int main(int argc, char **argv) {
-    std::string previuos = "";
-    std::string currentk;
-    while (std::cin >> currentk)
-    {
-        if (previuos == currentk) {
-            std::cout << "repeating word : " << currentk << std::endl;
-        }
-        previuos = currentk;
-    }
-    return 1;
+    
     ListNode *list1(0);
 
     ListNode** tlist1 = &list1;
-    for (int i = 0; i < 10; ) {
-        (*tlist1) = new ListNode(++i);
-        tlist1 = &((*tlist1)->next);
+    for (int i = 0; i < 10; ++i) {
+        (*tlist1)->Push_Back(tlist1, i);
+        
     }
-    
-    //std::cout << "list1 = " << list1->val<<" ptr = "<<list1->next<<std::endl;
+   
     ListNode** itlist = &list1;
-    int iter = 0;
-    while ((*itlist)->next != nullptr)
-    {
-        std::cout << "list element #" << iter << " : " << (*itlist)->val << std::endl;
-        iter++;
-        *itlist = (*itlist)->next;
-    }
-    // next
-    std::cout << " buff pointer method :" << std::endl;
-    int it = 0;
-    ListNode** curr = &list1;
-    while ((*curr)->next != nullptr)
-    {
-        std::cout << "curr #" << it++ << " = " << (*curr)->val << std::endl;
-        *curr = (*curr)->next;
-
-    }
+    list1->Print_List(itlist);
+   
 
     ListNode list(0);
     
     ListNode* pList = &list;
 
-    for (int i = 0; i < 10;) {
-        pList->next = new ListNode(++i);
-        pList = pList->next;
+    for (int i = 0; i < 10;i++) {
+        list.Push_Back(pList, i);
     }
-    int iterr = 0;
-    ListNode* current = list.next;
-    while (current->next != nullptr) {
-        std::cout << "list member # " << iterr << " = " << current->val << std::endl;
-        current = current->next;
-        iterr++;
-    }
+    list.Print_List(list);
+   
     
 
     testing::InitGoogleTest(&argc, argv);
