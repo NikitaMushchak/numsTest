@@ -75,3 +75,31 @@ public:
         std::cout << "thread id : " << std::this_thread::get_id() << std::endl;
     }
 };
+
+
+struct ListNode {
+
+
+    int val;
+    int size = 0;
+    ListNode* head;
+    ListNode* next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
+    void Push_Back(int number) {
+
+        if (head == nullptr) {
+            head = new ListNode(number);
+
+        }
+        else {
+            ListNode* current = this->head;
+            if (current->next != nullptr) {
+                current = current->next;
+            }
+            current->next = new ListNode(number);
+        }
+        size++;
+    }
+};

@@ -107,53 +107,17 @@ TEST(asynclaunchTest2, objii) {
 
     std::cout << "finished : " << std::endl;
 }
-struct ListNode {
-  
 
-    int val;
-    int size = 0;
-    ListNode* head;
-    ListNode* next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode* next) : val(x), next(next) {}
-    void Push_Back(int number) {
-        
-        if (head == nullptr) {
-            head = new ListNode(number);
-            
-        }
-        else {
-            ListNode* current = this->head;
-            if (current->next != nullptr) {
-                current = current->next;
-            }
-            current->next = new ListNode(number);
-        }
-        size++;
-    }
-};
- 
+TEST(ListNodetest, normtest) {
 
-int main(int argc, char **argv) {
-    std::string previuos = "";
-    std::string currentk;
-    while (std::cin >> currentk)
-    {
-        if (previuos == currentk) {
-            std::cout << "repeating word : " << currentk << std::endl;
-        }
-        previuos = currentk;
-    }
-    return 1;
-    ListNode *list1(0);
+    ListNode* list1(0);
 
     ListNode** tlist1 = &list1;
     for (int i = 0; i < 10; ) {
         (*tlist1) = new ListNode(++i);
         tlist1 = &((*tlist1)->next);
     }
-    
+
     //std::cout << "list1 = " << list1->val<<" ptr = "<<list1->next<<std::endl;
     ListNode** itlist = &list1;
     int iter = 0;
@@ -175,7 +139,7 @@ int main(int argc, char **argv) {
     }
 
     ListNode list(0);
-    
+
     ListNode* pList = &list;
 
     for (int i = 0; i < 10;) {
@@ -189,6 +153,10 @@ int main(int argc, char **argv) {
         current = current->next;
         iterr++;
     }
+
+}
+
+int main(int argc, char **argv) {
     
 
     testing::InitGoogleTest(&argc, argv);
