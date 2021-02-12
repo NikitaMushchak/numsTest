@@ -156,9 +156,16 @@ TEST(ListNodetest, normtest) {
 
 }
 
+TEST(task1102Tst, tee) {
+    //task1102();
+    //upr11_02();
+   
+}
+
 int main(int argc, char **argv) {
     
-
+    //outputnumber();
+    numcellf(64);
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
