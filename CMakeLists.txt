@@ -16,13 +16,19 @@ set(CMAKE_CXX_STANDARD 11)
 
 # Locate GTest
 if(MSVC)
+	# GTest
+	add_compile_options(/W4 /arch:SSE /arch:SSE2 /MT /MTd)
 	enable_testing()
-    include(GoogleTest)
 	find_package(GTest REQUIRED)
 	include_directories(${GTEST_INCLUDE_DIRS})
 
-	add_executable(runTests tests.cpp)
-	target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
+	# Unit Tests
+	# Add test cpp file
+	add_executable( runUnitTests tests.cpp)
+	# Link test executable against gtest & gtest_main
+	target_link_libraries(runUnitTests ${GTEST_BOTH_LIBRARIES})
+	add_test( runUnitTests runUnitTests )
+
 else()
 	find_package(GTest REQUIRED)
 	include_directories(${GTEST_INCLUDE_DIRS})

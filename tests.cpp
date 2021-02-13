@@ -1,8 +1,11 @@
 #include "whattotest.cpp"
 #include <bitset>
+
+
 #include "gtest/gtest.h"
 #include <future>
 #include <stack>
+//#pragma comment(lib,"pthreadVC3.lib")
 //#include "H:\googletest-release-1.10.0\googletest\include\gtest\gtest.h"
 
 
