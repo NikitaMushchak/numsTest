@@ -1,7 +1,7 @@
 #include "whattotest.cpp"
 #include <bitset>
 
-
+#include <limits>
 #include "gtest/gtest.h"
 #include <future>
 #include <stack>
@@ -99,65 +99,65 @@
 //    std::cout << "Main finished!";
 //}
 
-TEST(asynclaunchTest2, objii) {
-    std::cout << "Main Id task : " << std::this_thread::get_id() << std::endl;
-
-    Item item;
-    auto fut = std::async(std::launch::async, [&item] {
-        item.start();
-        });
-    fut.get();
-
-    std::cout << "finished : " << std::endl;
-}
-
-TEST(ListNodetest, normtest) {
-
-    ListNode* list1(0);
-
-    ListNode** tlist1 = &list1;
-    for (int i = 0; i < 10; ) {
-        (*tlist1) = new ListNode(++i);
-        tlist1 = &((*tlist1)->next);
-    }
-
-    //std::cout << "list1 = " << list1->val<<" ptr = "<<list1->next<<std::endl;
-    ListNode** itlist = &list1;
-    int iter = 0;
-    while ((*itlist)->next != nullptr)
-    {
-        std::cout << "list element #" << iter << " : " << (*itlist)->val << std::endl;
-        iter++;
-        *itlist = (*itlist)->next;
-    }
-    // next
-    std::cout << " buff pointer method :" << std::endl;
-    int it = 0;
-    ListNode** curr = &list1;
-    while ((*curr)->next != nullptr)
-    {
-        std::cout << "curr #" << it++ << " = " << (*curr)->val << std::endl;
-        *curr = (*curr)->next;
-
-    }
-
-    ListNode list(0);
-
-    ListNode* pList = &list;
-
-    for (int i = 0; i < 10;) {
-        pList->next = new ListNode(++i);
-        pList = pList->next;
-    }
-    int iterr = 0;
-    ListNode* current = list.next;
-    while (current->next != nullptr) {
-        std::cout << "list member # " << iterr << " = " << current->val << std::endl;
-        current = current->next;
-        iterr++;
-    }
-
-}
+//TEST(asynclaunchTest2, objii) {
+//    std::cout << "Main Id task : " << std::this_thread::get_id() << std::endl;
+//
+//    Item item;
+//    auto fut = std::async(std::launch::async, [&item] {
+//        item.start();
+//        });
+//    fut.get();
+//
+//    std::cout << "finished : " << std::endl;
+//}
+//
+//TEST(ListNodetest, normtest) {
+//
+//    ListNode* list1(0);
+//
+//    ListNode** tlist1 = &list1;
+//    for (int i = 0; i < 10; ) {
+//        (*tlist1) = new ListNode(++i);
+//        tlist1 = &((*tlist1)->next);
+//    }
+//
+//    //std::cout << "list1 = " << list1->val<<" ptr = "<<list1->next<<std::endl;
+//    ListNode** itlist = &list1;
+//    int iter = 0;
+//    while ((*itlist)->next != nullptr)
+//    {
+//        std::cout << "list element #" << iter << " : " << (*itlist)->val << std::endl;
+//        iter++;
+//        *itlist = (*itlist)->next;
+//    }
+//    // next
+//    std::cout << " buff pointer method :" << std::endl;
+//    int it = 0;
+//    ListNode** curr = &list1;
+//    while ((*curr)->next != nullptr)
+//    {
+//        std::cout << "curr #" << it++ << " = " << (*curr)->val << std::endl;
+//        *curr = (*curr)->next;
+//
+//    }
+//
+//    ListNode list(0);
+//
+//    ListNode* pList = &list;
+//
+//    for (int i = 0; i < 10;) {
+//        pList->next = new ListNode(++i);
+//        pList = pList->next;
+//    }
+//    int iterr = 0;
+//    ListNode* current = list.next;
+//    while (current->next != nullptr) {
+//        std::cout << "list member # " << iterr << " = " << current->val << std::endl;
+//        current = current->next;
+//        iterr++;
+//    }
+//
+//}
 
 TEST(task1102Tst, tee) {
     //task1102();
@@ -168,7 +168,19 @@ TEST(task1102Tst, tee) {
 int main(int argc, char **argv) {
     
     //outputnumber();
-    numcellf(64);
+  /*  numcellf(64);
+    int maxint = std::pow(2,31) - 1;
+    numcellf(maxint);
+    double maxdouble = std::numeric_limits<double>::max();
+    numcelldouble(maxdouble);*/
+    //rockPaperScissors();
+    //primenumbers();
+    //nprimenumbers(10);
+    //isprimrerastofen(100);
+    //modenum();
+    /*nodestring();
+    quadraticeq();*/
+    pair();
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

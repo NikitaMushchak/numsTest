@@ -9,6 +9,8 @@
 #include <thread>
 #include <queue>
 #include <atomic>
+#include <random>
+#include <complex>
 
 #include <algorithm>
 
@@ -241,8 +243,292 @@ void numcellf(int numrice) {
     int i;
     for (i = 0; numrice > 1; i++) {
         numrice = numcells(numrice);
-        std::cout << "numrice " << numrice << std::endl;
+        //std::cout << "numrice " << numrice << std::endl;
     }
 
     std::cout << "numof celles = " << i << std::endl;
+}
+
+double numcellsdouble(double& numrice) {
+
+    return (numrice / 2);
+}
+
+void numcelldouble(double numrice) {
+    double i;
+    for (i = 0; numrice > 1; i++) {
+        numrice = numcellsdouble(numrice);
+        //std::cout << "numrice " << numrice << std::endl;
+    }
+
+    std::cout << "numof celles = " << i << std::endl;
+}
+
+void rockPaperScissors(void) {
+    int byte=-1;
+    int predict = 0;
+    do {
+        std::cout << "Please enter 1 to Rock, 2 to Paper and 3 to Scissors" << std::endl;
+        
+        std::cin >> byte;
+        switch (byte)
+        {
+        case 1:
+            std::cout << " You type the Rock" << std::endl;
+            break;
+        case 2:
+            std::cout << "You enter the Paper" << std::endl;
+            break;
+        case 3:
+            std::cout << "You enter the Scissors" << std::endl;
+            break;
+        default:
+            std::cout << "Wrong type! Please type again";
+            continue;
+            break;
+        }
+
+        predict = rand() % 3 + 1;
+
+        std::cout << "Computer rand : " << predict << std::endl;
+        switch (predict)
+        {
+        case 1:
+            std::cout << "Comp the Rock" << std::endl;
+            break;
+        case 2:
+            std::cout << "Comp the Paper" << std::endl;
+            break;
+        case 3:
+            std::cout << "Comp the Scissors" << std::endl;
+            break;
+        default:
+            std::cout << "Stupud computer!";
+            continue;
+            break;
+        }
+       /* if (byte == 1) {
+            switch (predict)
+            {
+            case 3:
+                std::cout << "You Win!" << std::endl;
+                break;
+            case 2:
+                std::cout << "You loose" << std::endl;
+                break;
+            default:
+                std::cout << "Another round!" << std::endl;
+                break;
+            }
+        }
+        if (byte == 2) {
+            switch (predict)
+            {
+            case 3:
+                std::cout << "You loose!" << std::endl;
+                break;
+            case 1:
+                std::cout << "You Win" << std::endl;
+                break;
+            default:
+                std::cout << "Another round!" << std::endl;
+                break;
+            }
+        }
+        if (byte == 3) {
+            switch (predict)
+            {
+            case 2:
+                std::cout << "You Win!" << std::endl;
+                break;
+            case 1:
+                std::cout << "You loose" << std::endl;
+                break;
+            default:
+                std::cout << "Another round!" << std::endl;
+                break;
+            }
+        }*/
+        int res = byte - predict;
+        if (abs(res) > 1)
+            res *= -1;
+        
+        if (res > 0)
+            std::cout << "You win!" << std::endl;
+        else
+            if (res == 0)
+                std::cout << "Anothe round!" << std::endl;
+            else
+                std::cout << "You loose!" << std::endl;
+    } while (byte == predict);
+}
+
+bool isprime(int number) {
+    if (number < 2)
+        return false;
+
+    for (int i = 2; i < number; i++) {
+        if (number % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+//
+bool isprimrerastofen(int N) {
+    std::vector<bool> net(N, true);
+    for (int i = 2; (i * i) < N; ++i) {
+        for (int j = i * i; j < N; j += i) {
+            net[j] = false;
+        }
+    }
+
+    std::cout << "prime numbers from 2 to " << N << std::endl;
+
+    for (int i = 2; i < net.size();++i) {
+        if (net[i])
+            std::cout << i << std::endl;
+    }
+    return true;
+}
+
+void primenumbers(void) {
+    std::vector<int> primes;
+
+    std::cout << "Please enter the number:" << std::endl;
+
+    int max;
+    std::cin >> max;
+
+    for (int i = 0; i < max; ++i) {
+        if (isprime(i)) {
+            primes.push_back(i);
+        }
+    }
+
+    std::cout << "Prime numbers from 1 to "<<max<<" : "<< std::endl;
+    for (int num : primes)
+        std::cout << "prime num : " << num << std::endl;
+}
+
+void nprimenumbers(int N) {
+    std::vector<int> primes;
+
+    for (int i = 0; i < N*N; ++i) {
+        if (isprime(i)) {
+            primes.push_back(i);
+            if (primes.size() == N)
+                break;
+        }
+    }
+
+    std::cout << N<<" Prime numbers" << std::endl;
+    for (int num : primes)
+        std::cout << "prime num : " << num << std::endl;
+}
+void modenum() {
+    std::vector<int> vec{0,1,2,3,4,5,6,222,3,3,74,2,5,2, 3};
+
+    std::sort(vec.begin(), vec.end());
+
+    int times = 0;
+    int maxtimes = 0;
+    int mode = 0;
+    for (int it = 0; it < vec.size()-1; ++it) {
+        if (vec[it] == vec[it + 1]) {
+            times++;
+            if (maxtimes < times) {
+                maxtimes = times;
+                mode = vec[it];
+            }
+        }
+        else {
+            times = 0;
+        }
+        
+    }
+    std::cout << "mode = " << mode << std::endl;
+}
+void nodestring() {
+    std::vector<std::string> vec = { "assap","a","b","fssd","s","a","zzet" };
+    std::sort(vec.begin(), vec.end());
+
+    int times = 0;
+    int maxtimes = 0;
+    std::string mode;
+    for (int it = 0; it < vec.size() - 1; ++it) {
+        if (vec[it] == vec[it + 1]) {
+            times++;
+            if (maxtimes < times) {
+                maxtimes = times;
+                mode = vec[it];
+            }
+        }
+        else {
+            times = 0;
+        }
+
+    }
+    std::cout << "mode = " << mode << std::endl;
+
+    std::cout << "min = " << vec.front() << " max = " << vec.back() << std::endl;
+}
+
+void quadraticeq() {
+    double a;
+    double b;
+    double c;
+
+    std::cout << "Enter cooefs of eq ax^2+bx+c = 0 like a b c" << std::endl;
+    std::cin >> a >> b >> c;
+
+    std::complex<double> x1;
+    std::complex<double> x2;
+
+    x1 = (-b - std::sqrt(b * b - 4 * a * c)) / (2 * a);
+    x2 = (-b + std::sqrt(b * b - 4 * a * c)) / (2 * a);
+
+
+    std::cout << "Roots : " << x1 << " , " << x2 << std::endl;
+}
+
+void pair() {
+    std::vector <std::string> names;
+    std::vector<int> scores;
+    std::string name;
+    int score;
+    std::cout << "Type Name score" << std::endl;
+    do{
+        std::cin >>name>>score;
+        if(name != "NoName")
+            names.push_back(name);
+        if(score !=  0)
+            scores.push_back(score);
+    } while (name != "NoName" && score != 0);
+
+    for (int i = 0; i < scores.size(); ++i) {
+        std::cout << " Name : " << names[i] << ", score = " << scores[i] << std::endl;
+        for (int j = i + 1; j < scores.size(); ++j) {
+            if (names[i] == names[j]) {
+                std::cout << "Name : " << names[i] << " append multiple times!" << std::endl;
+                names.erase(names.begin() + j);
+                scores.erase(scores.begin() + j);
+                --j;
+            }
+        }
+    }
+    std::cout << "Please enter the score:" << std::endl;
+
+    int sc;
+    std::cin >> sc;
+    std::vector<std::string> scorename;
+    for (int it = 0; it < scores.size(); ++it) {
+        if (scores[it] == sc) {
+            scorename.push_back(names[it]);
+        }
+    }
+
+    std::cout << "Peaople with entered score:" << std::endl;
+    for (auto g : scorename)
+        std::cout << g<<std::endl;
 }
